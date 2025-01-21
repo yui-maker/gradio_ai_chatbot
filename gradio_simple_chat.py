@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from openai import OpenAI
 import anthropic
 import gradio as gr
+from authentication import Authentication
 
 # Load environment variables
 load_dotenv()
@@ -108,7 +109,9 @@ iface = gr.Interface(
 
 def main():
     """Run the Gradio interface."""
-    iface.launch(share=True)
+    iface.launch(share=True, 
+                auth=Authentication.auth, 
+                auth_message="Please enter your credentials to access the chat interface",)
 
 if __name__ == "__main__":
     main()
